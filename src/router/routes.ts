@@ -9,9 +9,9 @@ export const constantRoute = [
     }
   },
   {
-    path: '/login',
-    name: 'login',
-    component: ()=>import('@/views/login/index.vue')
+    path: '/',
+    name: 'home',
+    component: ()=>import('@/layout/index.vue')
   },
   {
     path: '/404',
