@@ -3,7 +3,7 @@ import { Download, Edit, Delete } from '@element-plus/icons-vue'
 const props = defineProps({
   filetype: {
     type: String,
-    default: "FolderPicture.png",
+    default: "/src/assets/FolderPicture.png",
   },
   filename: {
     type: String,
@@ -20,7 +20,7 @@ const props = defineProps({
 <template>
   <div class="main">
     <div class="main-left">
-      <img :src="'/src/assets/' + filetype" alt="">
+      <img :src="filetype" alt="">
       <div class="name">{{ filename }}</div>
       <div class="Date-modified">修改时间： {{ Modifytime }}</div>
     </div>
@@ -57,12 +57,17 @@ const props = defineProps({
   line-height: 60px;
   width: 400px;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .Date-modified {
   line-height: 60px;
   margin: 0 10px;
   color: #999;
+  overflow: hidden;
+  text-overflow:ellipsis; 
+  white-space: nowrap;
 }
 
 .main img {

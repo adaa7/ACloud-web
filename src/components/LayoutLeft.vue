@@ -6,11 +6,15 @@ import {
   Headset,
 } from '@element-plus/icons-vue'
 import { ref } from 'vue';
+import { useRouter } from "vue-router";
+const router = useRouter();
+const params = router.currentRoute.value.href;
+console.log(params);
 const username = ref('admin');
 </script>
 
 <template>
-    <el-menu default-active="/index/MyFiles" class="el-menu-vertical-demo" router="true">
+    <el-menu :default-active="params" class="el-menu-vertical-demo" router="true">
     <div class="menu-logo">
       <div class="logo"><img src="@/assets/logo.svg" alt="" /></div>
       <div class="logo-text">ACloud</div>

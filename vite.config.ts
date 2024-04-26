@@ -21,5 +21,14 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  server:{
+    proxy:{
+       '/api':{
+           target:"http://172.20.10.14:8080/", //跨域地址
+           changeOrigin:true, //支持跨域
+           rewrite:(path) => path.replace(/^\/api/, "")//重写路径,替换/api
+       }
+    }
+ }
 })

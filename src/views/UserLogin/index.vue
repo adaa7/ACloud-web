@@ -1,5 +1,22 @@
 <script setup>
 import { RouterLink } from 'vue-router';
+import { ref,reactive } from 'vue';
+import axios from 'axios'
+import useUserStore from '@/stores/modules/user';
+const username = ref('');
+const password = ref('');
+let loginForm = reactive({
+    username: '',
+    password: ''
+})
+const userStore = useUserStore()
+loginForm.password = password.value
+loginForm.username = username.value
+function login(){
+    userStore.userLogin(loginForm).then((data)=>{
+        console.log(data);
+    })
+}
 </script>
 
 <template>
@@ -7,9 +24,9 @@ import { RouterLink } from 'vue-router';
         <div class="login-wrapper">
             <div class="header"><img src="@/assets/logo.svg" alt=""/>Login</div>
             <div class="form-wrapper">
-                <input type="text" name="username" placeholder="username" class="input-item">
-                <input type="password" name="password" placeholder="password" class="input-item">
-                <div class="btn">登录</div>
+                <input type="text" name="username" v-model="username" placeholder="username" class="input-item">
+                <input type="password" name="password" v-model="password" placeholder="password" class="input-item">
+                <div class="btn" @click="login()">登录</div>
                 <router-link to="/register"><div class="btn">注册</div></router-link>
             </div>
         </div>
